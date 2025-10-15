@@ -9,7 +9,7 @@ import { ControlsBar } from "@/components/controls-bar";
 import { StructuredData } from "@/components/structured-data";
 import { locales, type Locale } from "@/i18n/config";
 import metadataJson from "../../../messages/metadata.json";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

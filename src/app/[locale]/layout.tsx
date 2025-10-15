@@ -9,6 +9,7 @@ import { ControlsBar } from "@/components/controls-bar";
 import { StructuredData } from "@/components/structured-data";
 import { locales, type Locale } from "@/i18n/config";
 import metadataJson from "../../../messages/metadata.json";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -118,6 +119,7 @@ export default async function RootLayout({
             {children}
           </ThemeProvider>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );

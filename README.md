@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Brandon Garcia Ramos - Portfolio
+
+Personal portfolio website showcasing my digital ventures and projects.
+
+## Tech Stack
+
+- **Framework:** [Next.js 15](https://nextjs.org) with App Router
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Internationalization:** next-intl
+- **Theming:** next-themes (dark/light mode)
+- **UI Components:** Custom components with shadcn/ui principles
+- **Animations:** Custom PixelCard component with canvas animations
+
+## Features
+
+- Internationalized content (i18n support)
+- Dark/Light theme toggle
+- Responsive design (mobile-first approach)
+- Interactive pixel card animations
+- Theme-aware logos that adapt to color scheme
+- Projects showcase with custom styling
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- pnpm (recommended)
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install dependencies
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Run development server
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Learn More
+### Build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Create production build
+pnpm build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Start production server
+pnpm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Linting
 
-## Deploy on Vercel
+```bash
+# Run ESLint
+pnpm lint
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+├── src/
+│   ├── app/
+│   │   └── [locale]/          # Internationalized routes
+│   ├── components/             # React components
+│   │   ├── pixel-card.tsx     # Custom animated card component
+│   │   ├── theme-aware-logo.tsx
+│   │   └── ...
+│   ├── data/                   # Data files (projects, etc.)
+│   ├── interfaces/             # TypeScript interfaces
+│   ├── i18n/                   # Internationalization config
+│   └── lib/                    # Utility functions
+├── public/
+│   └── logos/                  # Project logos
+└── messages/                   # Translation files
+```
+
+## Projects Showcased
+
+- **imSoft** - Digital solutions
+- **Holistia** - Holistic wellness platform
+- **Cursumi** - Educational platform
+- **Omnitria** - Business solutions
+
+## License
+
+Private project - All rights reserved
+
+## Author
+
+Brandon Garcia Ramos

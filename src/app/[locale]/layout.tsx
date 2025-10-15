@@ -7,7 +7,7 @@ import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ControlsBar } from "@/components/controls-bar";
 import { StructuredData } from "@/components/structured-data";
-import { locales } from "@/i18n/config";
+import { locales, type Locale } from "@/i18n/config";
 import metadataJson from "../../../messages/metadata.json";
 
 const geistSans = Geist({
@@ -93,7 +93,7 @@ export default async function RootLayout({
   const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
-  if (!locales.includes(locale as any)) {
+  if (!locales.includes(locale as Locale)) {
     notFound();
   }
 

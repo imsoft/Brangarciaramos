@@ -2,8 +2,8 @@
 
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
 import { useEffect, useState, useTransition } from "react";
+import { useTheme } from "@/components/app-theme-provider";
 
 export function ControlsBar() {
   const [mounted, setMounted] = useState(false);

@@ -4,9 +4,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import "../globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/app-theme-provider";
 import { ControlsBar } from "@/components/controls-bar";
-import { StructuredData } from "@/components/structured-data";
+import { CacheReset } from "@/components/cache-reset";
 import { locales, type Locale } from "@/i18n/config";
 import metadataJson from "../../../messages/metadata.json";
 import { Analytics } from "@vercel/analytics/next"
@@ -102,13 +102,11 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head>
-        <StructuredData />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
+          <CacheReset />
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

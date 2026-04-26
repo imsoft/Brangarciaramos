@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { useTheme } from "@/components/app-theme-provider";
 
 interface ThemeAwareLogoProps {
   logo: string;
@@ -30,12 +29,13 @@ export function ThemeAwareLogo({
 
   if (!mounted) {
     return (
-      <Image
+      <img
         src={logo}
         alt={alt}
         width={width}
         height={height}
         className={className}
+        loading="lazy"
       />
     );
   }
@@ -43,12 +43,13 @@ export function ThemeAwareLogo({
   const logoSrc = logoDark && resolvedTheme === "dark" ? logoDark : logo;
 
   return (
-    <Image
+    <img
       src={logoSrc}
       alt={alt}
       width={width}
       height={height}
       className={className}
+      loading="lazy"
     />
   );
 }

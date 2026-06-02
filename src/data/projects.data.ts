@@ -10,25 +10,19 @@ export const projects: Project[] = [
   {
     name: "Cursumi",
     url: "https://www.cursumi.com/",
-    colors: "#22d3ee,#06b6d4,#0e7490",
+    colors: "#d8b4fe,#a855f7,#6b21a8",
     logo: "https://www.cursumi.com/favicon.ico",
-  },
-  {
-    name: "Aduvanta",
-    url: "https://aduvanta.com/",
-    colors: "#93c5fd,#3b82f6,#1d4ed8",
-    logo: "https://aduvanta.com/favicon.ico",
   },
   {
     name: "imSoft",
     url: "https://www.imsoft.io/",
-    colors: "#fda4af,#fb7185,#e11d48",
+    colors: "#93c5fd,#3b82f6,#1d4ed8",
     logo: "https://www.imsoft.io/favicon.ico",
   },
   {
     name: "Brandon by Bran",
     url: "https://www.brandonbybran.com/",
-    colors: "#fcd34d,#f59e0b,#b45309",
+    colors: "#71717a,#27272a,#09090b",
     logo: "https://www.brandonbybran.com/favicon.ico",
   },
 ];

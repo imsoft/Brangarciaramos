@@ -10,7 +10,7 @@ export default function Home() {
       <HeroSection />
 
       <section
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-7xl"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl"
         aria-label="Digital ventures and projects"
       >
         {projects.map((project) => (

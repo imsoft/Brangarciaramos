@@ -8,8 +8,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "cursumi.com" },
       { protocol: "https", hostname: "www.cursumi.com" },
-      { protocol: "https", hostname: "aduvanta.com" },
-      { protocol: "https", hostname: "www.aduvanta.com" },
       { protocol: "https", hostname: "imsoft.io" },
       { protocol: "https", hostname: "www.imsoft.io" },
       { protocol: "https", hostname: "brandonbybran.com" },

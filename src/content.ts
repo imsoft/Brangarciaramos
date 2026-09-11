@@ -95,10 +95,17 @@ export const profile: Profile = {
   cv: { href: "/cv", fileName: "Brandon-Garcia-Ramos-CV.pdf" },
 };
 
-const clients = [
-  "Construcción Inteligente",
-  "Ferreacabados Jalisco",
-  "Club de Estirpe",
+const enClients = [
+  "Construcción Inteligente (eCommerce site, +30% sales in the first quarter)",
+  "Ferreacabados Jalisco (+25% conversions, +15% sales)",
+  "Club de Estirpe (+30% traffic, +20% leads)",
+  "Starfilters",
+];
+
+const esClients = [
+  "Construcción Inteligente (eCommerce, +30% de ventas en el primer trimestre)",
+  "Ferreacabados Jalisco (+25% de conversiones, +15% de ventas)",
+  "Club de Estirpe (+30% de tráfico, +20% de leads)",
   "Starfilters",
 ];
 
@@ -147,7 +154,7 @@ const en: Content = {
         "Launched multi-tenant SaaS platforms on Next.js, NestJS and PostgreSQL with Stripe billing, role-based access, automated test suites and CI/CD.",
         "Integrated REST and GraphQL APIs across payments, CRM and logistics services; client projects typically delivered ~30% improvements in sales or process throughput.",
       ],
-      clients,
+      clients: enClients,
     },
     {
       role: "Chief Technology Officer",
@@ -216,7 +223,7 @@ const en: Content = {
     {
       group: "Practices",
       items:
-        "System architecture, API design, performance and security optimisation, Agile/Scrum",
+        "System architecture, API design, performance and security optimisation, Agile/Scrum, OKRs",
     },
   ],
   education: [
@@ -236,7 +243,7 @@ const en: Content = {
     items: [
       "Languages: Spanish (native), English (C1)",
       "Cursumi selected for the Reto Zapopan incubation programme",
-      "Courses: Next.js for Production (DevTalles), OpenAI with React + NestJS",
+      "Courses: Next.js for Production (DevTalles), OpenAI with React + NestJS, Agile Team Management, OKRs for Managers, Business Strategy Design with AI",
     ],
   },
   contact: {
@@ -286,7 +293,7 @@ const es: Content = {
         "Lancé plataformas SaaS multi-tenant sobre Next.js, NestJS y PostgreSQL con cobro vía Stripe, control de acceso por roles, suites de pruebas automatizadas y CI/CD.",
         "Integré APIs REST y GraphQL de servicios de pagos, CRM y logística; los proyectos de clientes lograron típicamente mejoras de ~30% en ventas o en el rendimiento de sus procesos.",
       ],
-      clients,
+      clients: esClients,
     },
     {
       role: "Director de Tecnología (CTO)",
@@ -355,7 +362,7 @@ const es: Content = {
     {
       group: "Prácticas",
       items:
-        "Arquitectura de sistemas, diseño de APIs, optimización de rendimiento y seguridad, Agile/Scrum",
+        "Arquitectura de sistemas, diseño de APIs, optimización de rendimiento y seguridad, Agile/Scrum, OKRs",
     },
   ],
   education: [
@@ -375,7 +382,7 @@ const es: Content = {
     items: [
       "Idiomas: español (nativo), inglés (C1)",
       "Cursumi fue seleccionado para el programa de incubación Reto Zapopan",
-      "Cursos: Next.js for Production (DevTalles), OpenAI with React + NestJS",
+      "Cursos: Next.js for Production (DevTalles), OpenAI with React + NestJS, Gestión de equipos ágiles, OKRs para managers, Diseño de estrategia de negocio con IA",
     ],
   },
   contact: {

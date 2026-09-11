@@ -113,7 +113,7 @@ export function Experience({ c }: { c: Content }) {
             {job.clients && (
               <p className="mt-4 text-sm">
                 <span className="font-medium">{c.ui.clients}:</span>{" "}
-                {job.clients.join(", ")}
+                {job.clients.join(" · ")}
               </p>
             )}
           </li>

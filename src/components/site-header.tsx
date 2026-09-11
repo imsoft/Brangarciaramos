@@ -8,13 +8,13 @@ export function SiteHeader({ c, locale }: { c: Content; locale: Locale }) {
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background">
-      <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 py-3">
+      <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 py-3 lg:max-w-none lg:px-8">
         <a href="#top" className="font-semibold">
           {profile.name}
         </a>
         <nav
           aria-label={c.ui.navLabel}
-          className="order-last w-full md:order-0 md:w-auto"
+          className="order-last w-full lg:order-0 lg:ml-auto lg:w-auto"
         >
           <ul className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground sm:gap-x-5 sm:text-sm">
             {sectionIds.map((id) => (

@@ -1,3 +1,4 @@
+import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { SiteHeader } from "@/components/site-header";
 import {
   Contact,
@@ -45,6 +46,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         {c.ui.skipToContent}
       </a>
       <SiteHeader c={c} locale={locale} />
+      <RevealOnScroll />
       <main id="main" className="mx-auto max-w-3xl px-6">
         <Hero c={c} />
         <Experience c={c} />

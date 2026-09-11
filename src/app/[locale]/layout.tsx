@@ -13,8 +13,9 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-// Applies the saved (or system) theme before first paint to avoid a flash.
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");var d=t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d)}catch(e){}})()`;
+// Applies the saved (or system) theme before first paint to avoid a flash,
+// and marks the document as JS-enabled so reveal animations can opt in.
+const themeScript = `(function(){var r=document.documentElement;r.classList.add("js");try{var t=localStorage.getItem("theme");var d=t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches);r.classList.toggle("dark",d)}catch(e){}})()`;
 
 type LayoutParams = { params: Promise<{ locale: string }> };
 

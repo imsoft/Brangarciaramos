@@ -56,29 +56,20 @@
   }
 }
 
-/* Subtle motion: sections fade in as they scroll into view, and the theme
-   switch cross-fades. Browsers without scroll-driven animations (or users
-   with reduced motion) simply see static content. */
+/* Subtle motion: sections fade in once they enter the viewport (toggled by
+   RevealOnScroll), and the theme switch cross-fades. Without JS (no `html.js`)
+   or with reduced motion, content is simply static and visible. */
 @media (prefers-reduced-motion: no-preference) {
   html.theme-transition,
   html.theme-transition * {
     transition: color 250ms, background-color 250ms, border-color 250ms;
   }
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: reveal linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 20%;
-    }
-  }
-}
-
-@keyframes reveal {
-  from {
+  html.js .reveal {
     opacity: 0;
     translate: 0 12px;
+    transition: opacity 500ms ease-out, translate 500ms ease-out;
   }
-  to {
+  html.js .reveal.is-visible {
     opacity: 1;
     translate: 0 0;
   }

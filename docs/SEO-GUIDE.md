@@ -1,179 +1,55 @@
-# 🚀 Guía de SEO Implementada
+# Guía de SEO
 
-## ✅ Mejoras Implementadas
+Cómo está implementado el SEO del sitio y qué revisar al hacer cambios.
 
-### 1. **Metadata Dinámica por Idioma**
-- Títulos y descripciones optimizados para español e inglés
-- Keywords específicos para cada idioma
-- Metadata personalizada en `messages/metadata.json`
+## Dónde vive cada cosa
 
-### 2. **Open Graph Tags**
-- Tags de Open Graph para Facebook, LinkedIn, WhatsApp
-- Imágenes optimizadas (1200x630px)
-- Locale específico (es_MX, en_US)
+| Qué | Archivo |
+|---|---|
+| Título y descripción por idioma | `src/content.ts` → `meta` (la descripción es el resumen del hero) |
+| Nombre, email, teléfono, LinkedIn, GitHub, URL del sitio | `src/content.ts` → `profile` |
+| Metadata, Open Graph, Twitter Card, hreflang, canonical | `src/app/[locale]/layout.tsx` → `generateMetadata` |
+| Imagen Open Graph (1200×630, una por idioma) | `src/app/[locale]/opengraph-image.tsx` |
+| JSON-LD tipo `Person` | `src/components/home-page.tsx` → `personJsonLd` |
+| Sitemap | `src/app/sitemap.ts` |
+| Robots | `src/app/robots.ts` |
+| Manifest | `src/app/manifest.ts` |
+| CV en `/cv` | `public/cv.pdf` + rewrite en `next.config.ts` |
 
-### 3. **Twitter Cards**
-- Twitter Card tipo `summary_large_image`
-- Metadata optimizada para compartir en Twitter/X
+Para cambiar textos, el título o tus datos de contacto solo edita `src/content.ts`; la metadata, la imagen OG y el JSON-LD se generan desde ahí.
 
-### 4. **Sitemap.xml**
-- Generación automática de sitemap
-- Incluye ambos idiomas (es, en)
-- Frecuencia de cambio y prioridades configuradas
-- Accesible en: `https://tudominio.com/sitemap.xml`
+## Lo que ya está implementado
 
-### 5. **Robots.txt**
-- Configurado para permitir indexación
-- Bloquea rutas administrativas
-- Referencia al sitemap
-- Accesible en: `https://tudominio.com/robots.txt`
+- **Metadata por idioma**: `/en` y `/es` tienen su propio título, descripción y `og:locale` (`en_US` / `es_MX`).
+- **Hreflang y canonical**: cada página declara su versión en el otro idioma; `x-default` apunta a `/en`.
+- **Open Graph y Twitter Card**: `summary_large_image` con una imagen generada en build desde `content.ts` (nombre, título, ubicación). No hay que diseñarla a mano.
+- **JSON-LD `Person`**: nombre, puesto, descripción, email, teléfono, ubicación, LinkedIn y GitHub (`sameAs`), empresa actual y escuela.
+- **Sitemap y robots**: ambos idiomas en `/sitemap.xml`; `robots.txt` permite todo y apunta al sitemap.
+- **Páginas estáticas**: `/en`, `/es` y sus imágenes OG se prerenderizan en build (SSG), sin trabajo de servidor por visita.
+- **HTML semántico y accesible**: `header`, `nav`, `main`, `section` con encabezados, enlace "saltar al contenido", foco visible y contraste AA en modo claro y oscuro.
 
-### 6. **Structured Data (JSON-LD)**
-- Schema.org tipo "Person"
-- Información sobre tus empresas
-- Mejora la aparición en resultados de búsqueda
+## Pendiente de tu parte
 
-### 7. **Manifest PWA**
-- Soporte para Progressive Web App
-- Mejora la experiencia en móviles
-- Iconos configurados
+### Google Search Console
+1. Ve a [Google Search Console](https://search.google.com/search-console/) y agrega `brangarciaramos.com`.
+2. Si eliges verificar con etiqueta HTML, agrega el código en `generateMetadata` de `src/app/[locale]/layout.tsx`:
+   ```ts
+   verification: { google: "TU-CODIGO" },
+   ```
+   (Si verificas por DNS en Vercel no hace falta tocar código).
+3. Envía `https://brangarciaramos.com/sitemap.xml` en la sección Sitemaps.
 
-### 8. **Accesibilidad y HTML Semántico**
-- Uso de `<main>`, `<header>`, `<section>`
-- Atributos `aria-label` para accesibilidad
-- Textos alternativos en imágenes
+### Lighthouse
+Audita en producción (no en `pnpm dev`) con [PageSpeed Insights](https://pagespeed.web.dev/) sobre `/en` y `/es`. Objetivo: ≥ 95 en todas las categorías.
 
-### 9. **Hreflang Tags**
-- Links alternativos para cada idioma
-- Ayuda a Google a entender las versiones de idiomas
+## Verificación
 
-### 10. **Robots Meta Tags**
-- Configuración para Google Bot
-- Optimización de snippets e imágenes
+Después de cada deploy:
 
-## 📋 Tareas Pendientes (Debes Completar)
+- **Metadata**: ver código fuente de `/en` y buscar `<title>`, `og:` y `application/ld+json`.
+- **Open Graph**: [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) y [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/).
+- **JSON-LD**: [Rich Results Test](https://search.google.com/test/rich-results) o [Schema Markup Validator](https://validator.schema.org/).
+- **Sitemap y robots**: abrir `https://brangarciaramos.com/sitemap.xml` y `/robots.txt`.
+- **CV**: abrir `https://brangarciaramos.com/cv`.
 
-### 1. **Crear Imagen Open Graph**
-Crea una imagen de 1200x630px y guárdala como:
-```
-/public/og-image.jpg
-```
-
-**Recomendaciones:**
-- Incluye tu nombre y título
-- Usa colores de tu marca
-- Texto legible y claro
-- Herramientas: Canva, Figma, o [OG Image Generator](https://og-image.vercel.app/)
-
-### 2. **Crear Iconos PWA**
-Crea dos iconos para Progressive Web App:
-```
-/public/icon-192.png   (192x192px)
-/public/icon-512.png   (512x512px)
-```
-
-### 3. **Google Search Console**
-1. Ve a [Google Search Console](https://search.google.com/search-console/)
-2. Agrega tu sitio
-3. Verifica la propiedad
-4. Reemplaza `"google-site-verification-code"` en `layout.tsx` con tu código real
-
-### 4. **Actualizar URL Base**
-En los siguientes archivos, cambia `https://brangarciaramos.com` por tu dominio real:
-- `src/app/[locale]/layout.tsx` (línea 39)
-- `src/app/robots.ts`
-- `src/app/sitemap.ts`
-- `src/components/structured-data.tsx`
-
-### 5. **Agregar Links de Redes Sociales**
-En `src/components/structured-data.tsx`, actualiza los links:
-```typescript
-sameAs: [
-  "https://github.com/TU-USUARIO",
-  "https://linkedin.com/in/TU-PERFIL",
-  "https://twitter.com/TU-USUARIO",
-  // Agrega más...
-],
-```
-
-## 🎯 Próximos Pasos Recomendados
-
-### 1. **Google Analytics 4**
-```bash
-pnpm add @next/third-parties
-```
-
-Luego agrega en `layout.tsx`:
-```typescript
-import { GoogleAnalytics } from '@next/third-parties/google'
-
-// En el componente:
-<GoogleAnalytics gaId="G-XXXXXXXXXX" />
-```
-
-### 2. **Performance Monitoring**
-- Usa [Lighthouse](https://developers.google.com/web/tools/lighthouse) para auditar
-- Objetivo: Score > 90 en todas las categorías
-
-### 3. **Backlinks**
-- Comparte tu sitio en redes sociales
-- Agrega el link en tus perfiles de GitHub, LinkedIn
-- Considera escribir blog posts sobre tus proyectos
-
-### 4. **Content Marketing**
-- Agrega una sección de blog (opcional)
-- Escribe sobre tecnologías que usas
-- Case studies de tus proyectos
-
-## 🔍 Verificación
-
-### Comprobar Metadata
-```bash
-# Ver en el navegador
-View Page Source -> Busca <meta>
-```
-
-### Probar Open Graph
-- [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/)
-- [Twitter Card Validator](https://cards-dev.twitter.com/validator)
-- [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/)
-
-### Comprobar Sitemap
-```
-https://tudominio.com/sitemap.xml
-```
-
-### Comprobar Robots
-```
-https://tudominio.com/robots.txt
-```
-
-### Rich Results Test
-[Google Rich Results Test](https://search.google.com/test/rich-results)
-
-## 📊 Herramientas de SEO Recomendadas
-
-1. **Google Search Console** - Monitoreo de indexación
-2. **Google Analytics** - Análisis de tráfico
-3. **Ahrefs/SEMrush** - Análisis de keywords (premium)
-4. **PageSpeed Insights** - Performance
-5. **Schema Markup Validator** - Validar structured data
-
-## 💡 Tips Adicionales
-
-1. **Contenido de calidad**: El SEO más importante es contenido relevante
-2. **Velocidad**: Optimiza imágenes y código
-3. **Mobile-first**: Asegúrate que funciona perfecto en móviles
-4. **Actualización regular**: Google favorece sitios actualizados
-5. **Enlaces internos**: Si agregas más páginas, enlázalas entre sí
-
-## 🆘 Soporte
-
-Si tienes dudas sobre SEO:
-- [Next.js SEO Docs](https://nextjs.org/learn/seo/introduction-to-seo)
-- [Google SEO Starter Guide](https://developers.google.com/search/docs/beginner/seo-starter-guide)
-- [Moz Beginner's Guide to SEO](https://moz.com/beginners-guide-to-seo)
-
----
-
-¡Tu sitio ahora tiene una excelente base de SEO! 🎉
+Localmente, `pnpm build && pnpm start` y revisar las mismas rutas en `http://localhost:3000`.

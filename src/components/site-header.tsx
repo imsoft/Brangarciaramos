@@ -14,9 +14,9 @@ export function SiteHeader({ c, locale }: { c: Content; locale: Locale }) {
         </a>
         <nav
           aria-label={c.ui.navLabel}
-          className="order-last w-full md:order-none md:w-auto"
+          className="order-last w-full md:order-0 md:w-auto"
         >
-          <ul className="flex gap-x-5 overflow-x-auto text-sm text-muted-foreground">
+          <ul className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground sm:gap-x-5 sm:text-sm">
             {sectionIds.map((id) => (
               <li key={id}>
                 <a href={`#${id}`} className="hover:text-foreground">

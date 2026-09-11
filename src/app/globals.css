@@ -47,4 +47,45 @@
     outline-offset: 2px;
     border-radius: 2px;
   }
+  html {
+    scroll-behavior: smooth;
+  }
+  a,
+  button {
+    transition: color 150ms, background-color 150ms, border-color 150ms;
+  }
+}
+
+/* Subtle motion: sections fade in as they scroll into view, and the theme
+   switch cross-fades. Browsers without scroll-driven animations (or users
+   with reduced motion) simply see static content. */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-transition,
+  html.theme-transition * {
+    transition: color 250ms, background-color 250ms, border-color 250ms;
+  }
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 20%;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

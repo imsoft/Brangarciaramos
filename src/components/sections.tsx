@@ -20,7 +20,7 @@ function Section({
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className="scroll-mt-28 border-t py-16"
+      className="reveal scroll-mt-28 border-t py-16"
     >
       <h2
         id={`${id}-title`}

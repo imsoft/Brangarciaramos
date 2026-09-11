@@ -6,7 +6,10 @@ import { Moon, Sun } from "lucide-react";
 // so the icon is chosen with CSS and no client state is needed.
 export function ThemeToggle({ label }: { label: string }) {
   const toggle = () => {
-    const dark = document.documentElement.classList.toggle("dark");
+    const root = document.documentElement;
+    root.classList.add("theme-transition");
+    setTimeout(() => root.classList.remove("theme-transition"), 300);
+    const dark = root.classList.toggle("dark");
     try {
       localStorage.setItem("theme", dark ? "dark" : "light");
     } catch {

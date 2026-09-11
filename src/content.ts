@@ -84,7 +84,7 @@ export interface Content {
 
 export const profile: Profile = {
   name: "Brandon Uriel García Ramos",
-  email: "brangarciaramos@gmail.com",
+  email: "brandon@brangarciaramos.com",
   phone: { label: "+52 333 410 9866", href: "tel:+523334109866" },
   linkedin: {
     label: "linkedin.com/in/brangarciaramos",

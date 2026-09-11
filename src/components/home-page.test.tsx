@@ -85,7 +85,7 @@ describe.each(locales)("HomePage (%s)", (locale) => {
       .getAllByRole("link")
       .map(hrefOf);
     expect(hrefs).toEqual([
-      "mailto:brangarciaramos@gmail.com",
+      "mailto:brandon@brangarciaramos.com",
       "tel:+523334109866",
       "https://www.linkedin.com/in/brangarciaramos",
       "https://github.com/imsoft",

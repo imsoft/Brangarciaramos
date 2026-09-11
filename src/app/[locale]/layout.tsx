@@ -53,7 +53,7 @@ export async function generateMetadata({
       locale: locale === "es" ? "es_MX" : "en_US",
       alternateLocale: locale === "es" ? "en_US" : "es_MX",
       url: `/${locale}`,
-      siteName: profile.shortName,
+      siteName: profile.name,
       title: meta.title,
       description: meta.description,
     },

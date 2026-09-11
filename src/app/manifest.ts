@@ -4,7 +4,7 @@ import { content, profile } from "@/content";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: content.en.meta.title,
-    short_name: profile.shortName,
+    short_name: profile.name,
     description: content.en.meta.description,
     start_url: "/en",
     display: "browser",

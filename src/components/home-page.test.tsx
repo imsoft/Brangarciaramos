@@ -124,7 +124,7 @@ describe("content", () => {
 
   it("uses the required English title", () => {
     expect(content.en.meta.title).toBe(
-      "Brandon García Ramos — Senior Full-Stack Engineer",
+      "Brandon Uriel García Ramos — Senior Full-Stack Engineer",
     );
   });
 });

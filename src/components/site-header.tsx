@@ -10,7 +10,7 @@ export function SiteHeader({ c, locale }: { c: Content; locale: Locale }) {
     <header className="sticky top-0 z-40 border-b bg-background">
       <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 py-3">
         <a href="#top" className="font-semibold">
-          {profile.shortName}
+          {profile.name}
         </a>
         <nav
           aria-label={c.ui.navLabel}

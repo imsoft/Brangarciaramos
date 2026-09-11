@@ -18,7 +18,6 @@ export interface ExternalLink {
 
 export interface Profile {
   name: string;
-  shortName: string;
   email: string;
   phone: ExternalLink;
   linkedin: ExternalLink;
@@ -85,7 +84,6 @@ export interface Content {
 
 export const profile: Profile = {
   name: "Brandon Uriel García Ramos",
-  shortName: "Brandon García Ramos",
   email: "brangarciaramos@gmail.com",
   phone: { label: "+52 333 410 9866", href: "tel:+523334109866" },
   linkedin: {
@@ -112,7 +110,7 @@ const esSummary =
 
 const en: Content = {
   meta: {
-    title: "Brandon García Ramos — Senior Full-Stack Engineer",
+    title: "Brandon Uriel García Ramos — Senior Full-Stack Engineer",
     description: enSummary,
   },
   ui: {
@@ -251,7 +249,7 @@ const en: Content = {
 
 const es: Content = {
   meta: {
-    title: "Brandon García Ramos — Ingeniero Full-Stack Senior",
+    title: "Brandon Uriel García Ramos — Ingeniero Full-Stack Senior",
     description: esSummary,
   },
   ui: {

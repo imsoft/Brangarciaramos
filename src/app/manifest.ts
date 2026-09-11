@@ -1,27 +1,15 @@
 import { MetadataRoute } from "next";
+import { content, profile } from "@/content";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Brandon García Ramos - Digital Ventures",
-    short_name: "Brandon GR",
-    description:
-      "Building technological solutions that drive the future. Explore my innovative projects and companies.",
+    name: content.en.meta.title,
+    short_name: profile.shortName,
+    description: content.en.meta.description,
     start_url: "/en",
-    display: "standalone",
-    background_color: "#000000",
-    theme_color: "#000000",
-    icons: [
-      {
-        src: "/icon-192.png",
-        sizes: "192x192",
-        type: "image/png",
-      },
-      {
-        src: "/icon-512.png",
-        sizes: "512x512",
-        type: "image/png",
-      },
-    ],
+    display: "browser",
+    background_color: "#ffffff",
+    theme_color: "#ffffff",
+    icons: [{ src: "/favicon.ico", sizes: "any", type: "image/x-icon" }],
   };
 }
-

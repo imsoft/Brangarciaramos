@@ -1,17 +1,10 @@
 import { getRequestConfig } from "next-intl/server";
-import { locales, type Locale } from "./config";
+import { defaultLocale, isLocale } from "./config";
 
+// Copy lives in src/content.ts; next-intl is only used for locale routing.
 export default getRequestConfig(async ({ requestLocale }) => {
-  let locale = await requestLocale;
+  const requested = await requestLocale;
+  const locale = requested && isLocale(requested) ? requested : defaultLocale;
 
-  // Ensure that a valid locale is used
-  if (!locale || !locales.includes(locale as Locale)) {
-    locale = "es";
-  }
-
-  return {
-    locale,
-    messages: (await import(`../../messages/${locale}.json`)).default,
-  };
+  return { locale, messages: {} };
 });
-

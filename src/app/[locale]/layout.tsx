@@ -1,125 +1,89 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import type { Metadata, Viewport } from "next";
+import { Geist } from "next/font/google";
 import { notFound } from "next/navigation";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "../globals.css";
-import { ThemeProvider } from "@/components/app-theme-provider";
-import { ControlsBar } from "@/components/controls-bar";
 import { CacheReset } from "@/components/cache-reset";
-import { locales, type Locale } from "@/i18n/config";
-import metadataJson from "../../../messages/metadata.json";
-import { Analytics } from "@vercel/analytics/next"
+import { content, profile } from "@/content";
+import { isLocale, locales } from "@/i18n/config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// Applies the saved (or system) theme before first paint to avoid a flash.
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");var d=t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d)}catch(e){}})()`;
 
-type MetadataProps = {
-  params: Promise<{ locale: string }>;
+type LayoutParams = { params: Promise<{ locale: string }> };
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
 };
 
 export async function generateMetadata({
   params,
-}: MetadataProps): Promise<Metadata> {
+}: LayoutParams): Promise<Metadata> {
   const { locale } = await params;
-  const meta = metadataJson[locale as keyof typeof metadataJson] || metadataJson.en;
+  if (!isLocale(locale)) return {};
+  const { meta } = content[locale];
 
   return {
+    metadataBase: new URL(profile.siteUrl),
     title: meta.title,
     description: meta.description,
-    keywords: meta.keywords,
-    authors: [{ name: "Brandon García Ramos" }],
-    creator: "Brandon García Ramos",
-    metadataBase: new URL("https://brangarciaramos.com"),
+    authors: [{ name: profile.name, url: profile.siteUrl }],
+    creator: profile.name,
     alternates: {
       canonical: `/${locale}`,
-      languages: {
-        en: "/en",
-        es: "/es",
-      },
+      languages: { en: "/en", es: "/es", "x-default": "/en" },
     },
     openGraph: {
       type: "website",
       locale: locale === "es" ? "es_MX" : "en_US",
+      alternateLocale: locale === "es" ? "en_US" : "es_MX",
       url: `/${locale}`,
-      title: meta.ogTitle,
-      description: meta.ogDescription,
-      siteName: "Brandon García Ramos",
-      images: [
-        {
-          url: "/og-image.jpg",
-          width: 1200,
-          height: 630,
-          alt: meta.ogTitle,
-        },
-      ],
+      siteName: profile.shortName,
+      title: meta.title,
+      description: meta.description,
     },
     twitter: {
       card: "summary_large_image",
-      title: meta.ogTitle,
-      description: meta.ogDescription,
-      images: ["/og-image.jpg"],
+      title: meta.title,
+      description: meta.description,
     },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    },
-    verification: {
-      google: "google-site-verification-code",
-    },
+    robots: { index: true, follow: true },
   };
 }
 
 export default async function RootLayout({
   children,
   params,
-}: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}>) {
+}: Readonly<{ children: React.ReactNode } & LayoutParams>) {
   const { locale } = await params;
-
-  // Ensure that the incoming `locale` is valid
-  if (!locales.includes(locale as Locale)) {
-    notFound();
-  }
-
-  const messages = await getMessages();
+  if (!isLocale(locale)) notFound();
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <NextIntlClientProvider messages={messages}>
-          <CacheReset />
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <ControlsBar />
-            {children}
-          </ThemeProvider>
-        </NextIntlClientProvider>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className={`${geistSans.variable} font-sans antialiased`}>
+        <CacheReset />
+        {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
 }
-

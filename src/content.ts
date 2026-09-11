@@ -110,10 +110,10 @@ const esClients = [
 ];
 
 const enSummary =
-  "Full-stack engineer, 6+ years shipping web and mobile products end to end. 20+ projects delivered across six industries — SaaS platforms, marketplaces and internal tools — in TypeScript, React/Next.js, Node/NestJS and PostgreSQL.";
+  "Full-stack engineer, 7+ years shipping web and mobile products end to end. 20+ projects delivered across six industries — SaaS platforms, marketplaces and internal tools — in TypeScript, React/Next.js, Node/NestJS and PostgreSQL.";
 
 const esSummary =
-  "Ingeniero full-stack con más de 6 años entregando productos web y móviles de principio a fin. Más de 20 proyectos entregados en seis industrias — plataformas SaaS, marketplaces y herramientas internas — con TypeScript, React/Next.js, Node/NestJS y PostgreSQL.";
+  "Ingeniero full-stack con más de 7 años entregando productos web y móviles de principio a fin. Más de 20 proyectos entregados en seis industrias — plataformas SaaS, marketplaces y herramientas internas — con TypeScript, React/Next.js, Node/NestJS y PostgreSQL.";
 
 const en: Content = {
   meta: {
